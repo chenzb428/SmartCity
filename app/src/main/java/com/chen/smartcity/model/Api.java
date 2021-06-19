@@ -2,9 +2,11 @@ package com.chen.smartcity.model;
 
 import com.chen.smartcity.model.bean.HomeBannerResult;
 import com.chen.smartcity.model.bean.LoginResult;
+import com.chen.smartcity.model.bean.MeetParams;
 import com.chen.smartcity.model.bean.MineUserResult;
 import com.chen.smartcity.model.bean.NewCategory;
 import com.chen.smartcity.model.bean.NewList;
+import com.chen.smartcity.model.bean.Result;
 import com.chen.smartcity.model.bean.ServerResult;
 
 import retrofit2.Call;
@@ -36,4 +38,7 @@ public interface Api {
 
     @GET("prod-api/api/common/user/getInfo")
     Call<MineUserResult> getUserInfo(@Header("Authorization") String header);
+
+    @POST("prod-api/api/common/feedback")
+    Call<Result> doMeet(@Header("Authorization") String header, @Body MeetParams params);
 }

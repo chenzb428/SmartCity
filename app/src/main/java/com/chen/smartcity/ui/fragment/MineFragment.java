@@ -16,6 +16,10 @@ import com.chen.smartcity.model.bean.MineUserResult;
 import com.chen.smartcity.presenter.IMinePresenter;
 import com.chen.smartcity.ui.activity.LoginActivity;
 import com.chen.smartcity.ui.activity.MainActivity;
+import com.chen.smartcity.ui.activity.mine.DingdanActivity;
+import com.chen.smartcity.ui.activity.mine.MeetActivity;
+import com.chen.smartcity.ui.activity.mine.UpdatePasswordActivity;
+import com.chen.smartcity.ui.activity.mine.UserInfoActivity;
 import com.chen.smartcity.utils.Constants;
 import com.chen.smartcity.utils.LogUtils;
 import com.chen.smartcity.utils.PresenterManager;
@@ -26,7 +30,7 @@ public class MineFragment extends BaseFragment implements IMineCallback {
     private ImageView cover;
     private LinearLayout settingLL;
     private Button loginBtn;
-    private TextView loginOutBtn, username;
+    private TextView loginOutBtn, username, userinfoTv, dingdanTv, passwordTv, meetTv;
     private IMinePresenter mMinePresenter;
 
     @Override
@@ -42,6 +46,10 @@ public class MineFragment extends BaseFragment implements IMineCallback {
         loginOutBtn = rootView.findViewById(R.id.mine_logout);
         cover = rootView.findViewById(R.id.mine_cover);
         username = rootView.findViewById(R.id.mine_username);
+        userinfoTv = rootView.findViewById(R.id.mine_user_info);
+        dingdanTv = rootView.findViewById(R.id.mine_user_diangdan);
+        passwordTv = rootView.findViewById(R.id.mine_user_password);
+        meetTv = rootView.findViewById(R.id.mine_user_meet);
 
         if (findByKey("token") != null) {
             settingLL.setVisibility(View.VISIBLE);
@@ -73,6 +81,34 @@ public class MineFragment extends BaseFragment implements IMineCallback {
                 removeByKey("token");
                 getActivity().finish();
                 startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
+
+        userinfoTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), UserInfoActivity.class));
+            }
+        });
+
+        dingdanTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), DingdanActivity.class));
+            }
+        });
+
+        passwordTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), UpdatePasswordActivity.class));
+            }
+        });
+
+        meetTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), MeetActivity.class));
             }
         });
     }
