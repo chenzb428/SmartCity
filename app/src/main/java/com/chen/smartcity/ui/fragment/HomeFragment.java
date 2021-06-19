@@ -123,7 +123,7 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
             @NotNull
             @Override
             public Fragment createFragment(int position) {
-                return HomeNewFragment.newInstance();
+                return HomeNewFragment.newInstance(result.get(position));
             }
 
             @Override
@@ -152,5 +152,12 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     @Override
     public void onEmpty() {
 
+    }
+
+    @Override
+    protected void release() {
+        if (mHomePresenter != null) {
+            mHomePresenter.unregisterViewCallback(this);
+        }
     }
 }
