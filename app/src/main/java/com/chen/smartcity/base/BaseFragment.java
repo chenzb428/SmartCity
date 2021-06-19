@@ -128,7 +128,7 @@ public abstract class BaseFragment extends Fragment {
 
     public String findByKey(String key) {
         SharedPreferences sp = getContext().getSharedPreferences("sp_SmartCity", getContext().MODE_PRIVATE);
-        return sp.getString(key, "");
+        return sp.getString(key, null);
     }
 
     public void removeByKey(String key) {
