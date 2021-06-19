@@ -7,7 +7,6 @@ import com.chen.smartcity.R;
 import com.chen.smartcity.base.BaseActivity;
 import com.chen.smartcity.model.bean.ServerResult;
 import com.chen.smartcity.ui.adapter.ServerAdapter;
-import com.chen.smartcity.utils.LogUtils;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class ServerSearchActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_server_search;
+        return R.layout.recycler_view_layout;
     }
 
     @Override

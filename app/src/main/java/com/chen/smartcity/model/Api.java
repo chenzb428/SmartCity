@@ -22,4 +22,7 @@ public interface Api {
 
     @GET
     Call<NewList> getNewList(@Url String url);  //prod-api/press/press/list
+
+    @GET("prod-api/press/press/list")
+    Call<NewList> getAllNews();
 }

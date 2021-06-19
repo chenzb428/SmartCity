@@ -16,7 +16,6 @@
             android:background="@drawable/shape_search"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:hint="请输入你想搜...的服务"
             android:textSize="12sp"
             android:imeOptions="actionSearch"
             android:singleLine="true"

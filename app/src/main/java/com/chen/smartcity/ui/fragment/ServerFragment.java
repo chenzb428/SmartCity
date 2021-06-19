@@ -1,9 +1,7 @@
 package com.chen.smartcity.ui.fragment;
 
-import android.app.Notification;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -34,7 +32,6 @@ import org.jetbrains.annotations.Nullable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
@@ -70,11 +67,12 @@ public class ServerFragment extends BaseFragment implements IServerCallback, Ser
         mCategoryAdapter = new ServerCategoryAdapter();
         mCategoryList.setAdapter(mCategoryAdapter);
 
-        mContentList.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        mContentList.setLayoutManager(new GridLayoutManager(getContext(), 3));
         mServerAdapter = new ServerAdapter();
         mContentList.setAdapter(mServerAdapter);
 
         searchEd = rootView.findViewById(R.id.search_et);
+        searchEd.setHint("请输入你想搜...的服务");
     }
 
     @Override

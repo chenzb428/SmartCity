@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCity"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.ServerSearchActivity"></activity>
+        <activity android:name=".ui.activity.HomeSearchActivity" />
+        <activity android:name=".ui.activity.ServerSearchActivity" />
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

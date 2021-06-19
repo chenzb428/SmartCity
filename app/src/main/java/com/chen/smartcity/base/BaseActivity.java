@@ -11,7 +11,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResId());
         initView();
+        initPresenter();
         initListener();
+        loadData();
+    }
+
+    protected void loadData() {
+    }
+
+    protected void initPresenter() {
     }
 
     protected void initListener() {
@@ -21,4 +29,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract int getLayoutResId();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        release();
+    }
+
+    protected void release() {
+    }
 }

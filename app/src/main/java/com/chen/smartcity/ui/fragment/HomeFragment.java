@@ -1,7 +1,15 @@
 package com.chen.smartcity.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Rect;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,6 +26,8 @@ import com.chen.smartcity.model.bean.NewCategory;
 import com.chen.smartcity.model.bean.NewList;
 import com.chen.smartcity.model.bean.ServerResult;
 import com.chen.smartcity.presenter.IHomePresenter;
+import com.chen.smartcity.ui.activity.HomeSearchActivity;
+import com.chen.smartcity.ui.activity.ServerSearchActivity;
 import com.chen.smartcity.ui.adapter.HomeRecommendAdapter;
 import com.chen.smartcity.ui.adapter.ServerAdapter;
 import com.chen.smartcity.utils.Constants;
@@ -32,7 +42,9 @@ import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class HomeFragment extends BaseFragment implements IHomeCallback {
@@ -45,10 +57,16 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
     private ViewPager2 mNewContent;
     private ServerAdapter mServerAdapter;
     private HomeRecommendAdapter mRecommendAdapter;
+    private EditText searchEd;
 
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_home;
+    }
+
+    @Override
+    protected View loadRootView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return inflater.inflate(R.layout.base_top_search_layout, container, false);
     }
 
     @Override
@@ -77,12 +95,35 @@ public class HomeFragment extends BaseFragment implements IHomeCallback {
                 outRect.bottom = sizeTB;
             }
         });
+
+        searchEd = rootView.findViewById(R.id.search_et);
+        searchEd.setHint("请输入你想搜...的新闻");
     }
 
     @Override
     protected void initPresenter() {
         mHomePresenter = PresenterManager.getInstance().getHomePresenter();
         mHomePresenter.registerViewCallback(this);
+    }
+
+    @Override
+    protected void initListener() {
+        searchEd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyword = v.getText().toString().trim();
+                    if (TextUtils.isEmpty(keyword)) {
+                        return false;
+                    }
+                    Intent intent = new Intent(getContext(), HomeSearchActivity.class);
+                    intent.putExtra("homeSearch", keyword);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
