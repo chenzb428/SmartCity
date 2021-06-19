@@ -1,5 +1,6 @@
 package com.chen.smartcity.base;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -116,6 +117,25 @@ public abstract class BaseFragment extends Fragment {
 
     protected View loadRootView(@NotNull LayoutInflater inflater, @org.jetbrains.annotations.Nullable ViewGroup container) {
         return inflater.inflate(R.layout.base_fragment_layout, container, false);
+    }
+
+    public void insertByKey(String key, String value) {
+        SharedPreferences sp = getContext().getSharedPreferences("sp_SmartCity", getContext().MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
+
+    public String findByKey(String key) {
+        SharedPreferences sp = getContext().getSharedPreferences("sp_SmartCity", getContext().MODE_PRIVATE);
+        return sp.getString(key, "");
+    }
+
+    public void removeByKey(String key) {
+        SharedPreferences sp = getContext().getSharedPreferences("sp_SmartCity", getContext().MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove(key);
+        editor.commit();
     }
 
     @Override

@@ -1,12 +1,15 @@
 package com.chen.smartcity.model;
 
 import com.chen.smartcity.model.bean.HomeBannerResult;
+import com.chen.smartcity.model.bean.LoginResult;
 import com.chen.smartcity.model.bean.NewCategory;
 import com.chen.smartcity.model.bean.NewList;
 import com.chen.smartcity.model.bean.ServerResult;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Url;
 
 public interface Api {
@@ -25,4 +28,7 @@ public interface Api {
 
     @GET("prod-api/press/press/list")
     Call<NewList> getAllNews();
+
+    @POST("prod-api/api/login")
+    Call<LoginResult> doLogin(@Body LoginParams params);
 }
