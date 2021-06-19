@@ -6,7 +6,8 @@ import com.chen.smartcity.presenter.IHomeNewPagePresenter;
 import com.chen.smartcity.presenter.IHomePresenter;
 import com.chen.smartcity.presenter.ILoginPresenter;
 import com.chen.smartcity.presenter.IMeetPresenter;
-import com.chen.smartcity.presenter.IMinePresenter;
+import com.chen.smartcity.presenter.IUpdateUserInfoPresenter;
+import com.chen.smartcity.presenter.IUserInfoPresenter;
 import com.chen.smartcity.presenter.INewPresenter;
 import com.chen.smartcity.presenter.IServerPresenter;
 import com.chen.smartcity.presenter.impl.AllNewsPresenter;
@@ -15,7 +16,8 @@ import com.chen.smartcity.presenter.impl.HomeNewPagePresenter;
 import com.chen.smartcity.presenter.impl.HomePresenter;
 import com.chen.smartcity.presenter.impl.LoginPresenter;
 import com.chen.smartcity.presenter.impl.MeetPresenter;
-import com.chen.smartcity.presenter.impl.MineUserInfoPresenter;
+import com.chen.smartcity.presenter.impl.UpdateUserInfoPresenter;
+import com.chen.smartcity.presenter.impl.UserInfoInfoPresenter;
 import com.chen.smartcity.presenter.impl.NewPresenter;
 import com.chen.smartcity.presenter.impl.ServerPresent;
 
@@ -28,9 +30,10 @@ public class PresenterManager {
     private final IAllNewsPresenter mAllNewsPresenter;
     private final INewPresenter mNewPresenter;
     private final ILoginPresenter mLoginPresenter;
-    private final IMinePresenter mMinePresenter;
+    private final IUserInfoPresenter mMinePresenter;
     private final IMeetPresenter mMeetPresenter;
     private final IDingdanPresenter mDingdanPresenter;
+    private final IUpdateUserInfoPresenter mUpdateUserInfoPresenter;
 
     public static PresenterManager getInstance() {
         return outInstance;
@@ -43,9 +46,10 @@ public class PresenterManager {
         mAllNewsPresenter = new AllNewsPresenter();
         mNewPresenter = new NewPresenter();
         mLoginPresenter = new LoginPresenter();
-        mMinePresenter = new MineUserInfoPresenter();
+        mMinePresenter = new UserInfoInfoPresenter();
         mMeetPresenter = new MeetPresenter();
         mDingdanPresenter = new DingdanPresenter();
+        mUpdateUserInfoPresenter = new UpdateUserInfoPresenter();
     }
 
     public IHomePresenter getHomePresenter() {
@@ -72,7 +76,7 @@ public class PresenterManager {
         return mLoginPresenter;
     }
 
-    public IMinePresenter getMinePresenter() {
+    public IUserInfoPresenter getMinePresenter() {
         return mMinePresenter;
     }
 
@@ -82,5 +86,9 @@ public class PresenterManager {
 
     public IDingdanPresenter getDingdanPresenter() {
         return mDingdanPresenter;
+    }
+
+    public IUpdateUserInfoPresenter getUpdateUserInfoPresenter() {
+        return mUpdateUserInfoPresenter;
     }
 }

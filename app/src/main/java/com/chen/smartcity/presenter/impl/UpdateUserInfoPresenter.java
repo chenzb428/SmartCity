@@ -1,12 +1,12 @@
 package com.chen.smartcity.presenter.impl;
 
 import com.chen.smartcity.model.Api;
-import com.chen.smartcity.model.MeetParams;
+import com.chen.smartcity.model.UpdateUserInfoParams;
 import com.chen.smartcity.model.bean.Result;
-import com.chen.smartcity.presenter.IMeetPresenter;
+import com.chen.smartcity.presenter.IUpdateUserInfoPresenter;
 import com.chen.smartcity.utils.LogUtils;
 import com.chen.smartcity.utils.RetrofitManager;
-import com.chen.smartcity.view.IMeetCallback;
+import com.chen.smartcity.view.IUpdateUserInfoCallback;
 
 import java.net.HttpURLConnection;
 
@@ -15,26 +15,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MeetPresenter implements IMeetPresenter {
+public class UpdateUserInfoPresenter implements IUpdateUserInfoPresenter {
 
-    private IMeetCallback mViewCallback = null;
+    private IUpdateUserInfoCallback mViewCallback = null;
 
     @Override
-    public void doMeet(String token, String title, String content) {
+    public void updateUserInfo(String token, String nickname, String email, String phone, String idCard, String sex) {
         Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
         Api api = retrofit.create(Api.class);
-        MeetParams params = new MeetParams(title, content);
-        Call<Result> task = api.doMeet(token, params);
+        UpdateUserInfoParams params = new UpdateUserInfoParams(nickname, email, phone, idCard, sex);
+        Call<Result> task = api.updateUserInfo(token, params);
         task.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 int code = response.code();
-                LogUtils.d(MeetPresenter.this, "doMeet code === > " + code);
+                LogUtils.d(UpdateUserInfoPresenter.this, "updateUserInfo code === > " + code);
                 if (code == HttpURLConnection.HTTP_OK) {
                     Result result = response.body();
-                    LogUtils.d(MeetPresenter.this, "doMeet result === > " + result.toString());
+                    LogUtils.d(UpdateUserInfoPresenter.this, "updateUserInfo result === > " + result.toString());
                     if (mViewCallback != null) {
-                        mViewCallback.onLoadedMeet(result);
+                        mViewCallback.onUpdateUserInfoSuccess(result);
                     }
                 } else {
                     if (mViewCallback != null) {
@@ -45,6 +45,7 @@ public class MeetPresenter implements IMeetPresenter {
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
+                LogUtils.d(UpdateUserInfoPresenter.this, "updateUserInfo error === > " + t.toString());
                 if (mViewCallback != null) {
                     mViewCallback.onError();
                 }
@@ -53,12 +54,12 @@ public class MeetPresenter implements IMeetPresenter {
     }
 
     @Override
-    public void registerViewCallback(IMeetCallback callback) {
+    public void registerViewCallback(IUpdateUserInfoCallback callback) {
         this.mViewCallback = callback;
     }
 
     @Override
-    public void unregisterViewCallback(IMeetCallback callback) {
+    public void unregisterViewCallback(IUpdateUserInfoCallback callback) {
         this.mViewCallback = null;
     }
 }

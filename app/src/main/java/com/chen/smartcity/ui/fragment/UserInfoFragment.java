@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.chen.smartcity.R;
 import com.chen.smartcity.base.BaseFragment;
-import com.chen.smartcity.model.bean.MineUserResult;
-import com.chen.smartcity.presenter.IMinePresenter;
+import com.chen.smartcity.model.bean.UserInfoResult;
+import com.chen.smartcity.presenter.IUserInfoPresenter;
 import com.chen.smartcity.ui.activity.LoginActivity;
 import com.chen.smartcity.ui.activity.MainActivity;
 import com.chen.smartcity.ui.activity.mine.DingdanActivity;
@@ -23,15 +23,15 @@ import com.chen.smartcity.ui.activity.mine.UserInfoActivity;
 import com.chen.smartcity.utils.Constants;
 import com.chen.smartcity.utils.LogUtils;
 import com.chen.smartcity.utils.PresenterManager;
-import com.chen.smartcity.view.IMineCallback;
+import com.chen.smartcity.view.IUserInfoCallback;
 
-public class MineFragment extends BaseFragment implements IMineCallback {
+public class UserInfoFragment extends BaseFragment implements IUserInfoCallback {
 
     private ImageView cover;
     private LinearLayout settingLL;
     private Button loginBtn;
     private TextView loginOutBtn, username, userinfoTv, dingdanTv, passwordTv, meetTv;
-    private IMinePresenter mMinePresenter;
+    private IUserInfoPresenter mMinePresenter;
 
     @Override
     protected int getLayoutResId() {
@@ -134,7 +134,7 @@ public class MineFragment extends BaseFragment implements IMineCallback {
     }
 
     @Override
-    public void onLoadedUserInfo(MineUserResult result) {
+    public void onLoadedUserInfo(UserInfoResult result) {
         if (result.getUser().getAvatar() == "") {
             cover.setImageResource(R.mipmap.ic_launcher_round);
         } else {

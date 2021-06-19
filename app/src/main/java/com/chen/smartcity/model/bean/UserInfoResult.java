@@ -1,6 +1,6 @@
 package com.chen.smartcity.model.bean;
 
-public class MineUserResult {
+public class UserInfoResult {
 
     private String msg;
     private Integer code;

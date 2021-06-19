@@ -1,4 +1,4 @@
-package com.chen.smartcity.model.bean;
+package com.chen.smartcity.model;
 
 public class MeetParams {
 

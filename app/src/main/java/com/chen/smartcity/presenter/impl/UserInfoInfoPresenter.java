@@ -1,11 +1,11 @@
 package com.chen.smartcity.presenter.impl;
 
 import com.chen.smartcity.model.Api;
-import com.chen.smartcity.model.bean.MineUserResult;
-import com.chen.smartcity.presenter.IMinePresenter;
+import com.chen.smartcity.model.bean.UserInfoResult;
+import com.chen.smartcity.presenter.IUserInfoPresenter;
 import com.chen.smartcity.utils.LogUtils;
 import com.chen.smartcity.utils.RetrofitManager;
-import com.chen.smartcity.view.IMineCallback;
+import com.chen.smartcity.view.IUserInfoCallback;
 
 import java.net.HttpURLConnection;
 
@@ -14,9 +14,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MineUserInfoPresenter implements IMinePresenter {
+public class UserInfoInfoPresenter implements IUserInfoPresenter {
 
-    private IMineCallback mViewCallback = null;
+    private IUserInfoCallback mViewCallback = null;
 
     @Override
     public void getUserInfo(String token) {
@@ -25,15 +25,15 @@ public class MineUserInfoPresenter implements IMinePresenter {
         }
         Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
         Api api = retrofit.create(Api.class);
-        Call<MineUserResult> task = api.getUserInfo(token);
-        task.enqueue(new Callback<MineUserResult>() {
+        Call<UserInfoResult> task = api.getUserInfo(token);
+        task.enqueue(new Callback<UserInfoResult>() {
             @Override
-            public void onResponse(Call<MineUserResult> call, Response<MineUserResult> response) {
+            public void onResponse(Call<UserInfoResult> call, Response<UserInfoResult> response) {
                 int code = response.code();
-                LogUtils.d(MineUserInfoPresenter.this, "getUserInfo code === > " + code);
+                LogUtils.d(UserInfoInfoPresenter.this, "getUserInfo code === > " + code);
                 if (code == HttpURLConnection.HTTP_OK) {
-                    MineUserResult result = response.body();
-                    LogUtils.d(MineUserInfoPresenter.this, "getUserInfo result === > " + result.toString());
+                    UserInfoResult result = response.body();
+                    LogUtils.d(UserInfoInfoPresenter.this, "getUserInfo result === > " + result.toString());
                     if (mViewCallback != null) {
                         mViewCallback.onLoadedUserInfo(result);
                     }
@@ -45,7 +45,7 @@ public class MineUserInfoPresenter implements IMinePresenter {
             }
 
             @Override
-            public void onFailure(Call<MineUserResult> call, Throwable t) {
+            public void onFailure(Call<UserInfoResult> call, Throwable t) {
                 if (mViewCallback != null) {
                     mViewCallback.onError();
                 }
@@ -54,12 +54,12 @@ public class MineUserInfoPresenter implements IMinePresenter {
     }
 
     @Override
-    public void registerViewCallback(IMineCallback callback) {
+    public void registerViewCallback(IUserInfoCallback callback) {
         this.mViewCallback = callback;
     }
 
     @Override
-    public void unregisterViewCallback(IMineCallback callback) {
+    public void unregisterViewCallback(IUserInfoCallback callback) {
         this.mViewCallback = null;
     }
 }

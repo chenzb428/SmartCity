@@ -3,8 +3,7 @@ package com.chen.smartcity.model;
 import com.chen.smartcity.model.bean.DingdanResult;
 import com.chen.smartcity.model.bean.HomeBannerResult;
 import com.chen.smartcity.model.bean.LoginResult;
-import com.chen.smartcity.model.bean.MeetParams;
-import com.chen.smartcity.model.bean.MineUserResult;
+import com.chen.smartcity.model.bean.UserInfoResult;
 import com.chen.smartcity.model.bean.NewCategory;
 import com.chen.smartcity.model.bean.NewList;
 import com.chen.smartcity.model.bean.Result;
@@ -15,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Url;
 
 public interface Api {
@@ -38,11 +38,14 @@ public interface Api {
     Call<LoginResult> doLogin(@Body LoginParams params);
 
     @GET("prod-api/api/common/user/getInfo")
-    Call<MineUserResult> getUserInfo(@Header("Authorization") String header);
+    Call<UserInfoResult> getUserInfo(@Header("Authorization") String header);
 
     @POST("prod-api/api/common/feedback")
     Call<Result> doMeet(@Header("Authorization") String header, @Body MeetParams params);
 
     @GET("prod-api/api/allorder/list")
     Call<DingdanResult> getDingdanInfo(@Header("Authorization") String header);
+
+    @PUT("prod-api/api/common/user")
+    Call<Result> updateUserInfo(@Header("Authorization") String header, @Body UpdateUserInfoParams params);
 }

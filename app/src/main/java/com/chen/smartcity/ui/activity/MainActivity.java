@@ -11,7 +11,7 @@ import com.chen.smartcity.base.BaseActivity;
 import com.chen.smartcity.base.BaseFragment;
 import com.chen.smartcity.ui.fragment.DangJianFragment;
 import com.chen.smartcity.ui.fragment.HomeFragment;
-import com.chen.smartcity.ui.fragment.MineFragment;
+import com.chen.smartcity.ui.fragment.UserInfoFragment;
 import com.chen.smartcity.ui.fragment.NewFragment;
 import com.chen.smartcity.ui.fragment.ServerFragment;
 import com.chen.smartcity.utils.LogUtils;
@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity {
     private ServerFragment mServerFragment;
     private DangJianFragment mDangJianFragment;
     private NewFragment mNewFragment;
-    private MineFragment mMineFragment;
+    private UserInfoFragment mMineFragment;
     private FragmentManager mManager;
 
     @Override
@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity {
         mServerFragment = new ServerFragment();
         mDangJianFragment = new DangJianFragment();
         mNewFragment = new NewFragment();
-        mMineFragment = new MineFragment();
+        mMineFragment = new UserInfoFragment();
 
         mManager = getSupportFragmentManager();
 
