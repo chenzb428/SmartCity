@@ -1,8 +1,9 @@
 package com.chen.smartcity.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ServerResult {
+public class ServerResult implements Serializable {
 
     private Integer total;
     private List<RowsBean> rows;
@@ -51,7 +52,7 @@ public class ServerResult {
                 '}';
     }
 
-    public static class RowsBean {
+    public static class RowsBean implements Serializable {
         private Object searchValue;
         private Object createBy;
         private String createTime;
@@ -197,7 +198,7 @@ public class ServerResult {
             this.isRecommend = isRecommend;
         }
 
-        public static class ParamsBean {
+        public static class ParamsBean implements Serializable {
         }
 
         @Override
