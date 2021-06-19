@@ -70,7 +70,7 @@ public class HomePresenter implements IHomePresenter {
                     ServerResult result = response.body();
                     LogUtils.d(HomePresenter.this, "getServer result === > " + result.toString());
                     if (mViewCallback != null) {
-                        mViewCallback.onLoadedServer(result.getRows());
+                        mViewCallback.onLoadedServer(result.getRows().subList(0, 9));
                     }
                 } else {
                     //
@@ -97,7 +97,7 @@ public class HomePresenter implements IHomePresenter {
                     NewList result = response.body();
                     LogUtils.d(HomePresenter.this, "getRecommend result === > " + result.toString());
                     if (mViewCallback != null) {
-                        mViewCallback.onLoadedRecommend(result.getRows());
+                        mViewCallback.onLoadedRecommend(result.getRows().subList(0, 4));
                     }
                 } else {
                     //
