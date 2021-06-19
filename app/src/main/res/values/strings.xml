@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SmartCity</string>
+    <string name="nav_home">主页</string>
+    <string name="nav_server">全部服务</string>
+    <string name="nav_dangjian">智慧党建</string>
+    <string name="nav_new">新闻</string>
+    <string name="nav_mine">个人中心</string>
 </resources>
