@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,7 +14,7 @@ import com.chen.smartcity.base.BaseFragment;
 import com.chen.smartcity.model.bean.NewCategory;
 import com.chen.smartcity.model.bean.NewList;
 import com.chen.smartcity.presenter.IHomeNewPagePresenter;
-import com.chen.smartcity.ui.adapter.HomeNewPageAdapter;
+import com.chen.smartcity.ui.adapter.NewCategoryContentAdapter;
 import com.chen.smartcity.utils.Constants;
 import com.chen.smartcity.utils.LogUtils;
 import com.chen.smartcity.utils.PresenterManager;
@@ -24,20 +25,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class HomeNewFragment extends BaseFragment implements IHomeNewPageCallback {
+public class NewCategoryContentFragment extends BaseFragment implements IHomeNewPageCallback {
 
     private int mNewId;
     private IHomeNewPagePresenter mHomeNewPagePresenter;
 
     private RecyclerView mNewList;
-    private HomeNewPageAdapter mNewPageAdapter;
+    private NewCategoryContentAdapter mCategoryContentAdapter;
 
-    public static HomeNewFragment newInstance(NewCategory.DataBean result) {
-        HomeNewFragment homeNewFragment = new HomeNewFragment();
+    public static Fragment newInstance(NewCategory.DataBean dataBean) {
+        NewCategoryContentFragment fragment = new NewCategoryContentFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(Constants.KEY_HOME_NEW_ID, result.getId());
-        homeNewFragment.setArguments(bundle);
-        return homeNewFragment;
+        bundle.putInt(Constants.KEY_HOME_NEW_ID, dataBean.getId());
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -48,10 +49,9 @@ public class HomeNewFragment extends BaseFragment implements IHomeNewPageCallbac
     @Override
     protected void initView(View rootView) {
         mNewList = rootView.findViewById(R.id.recyclerView);
-
         mNewList.setLayoutManager(new LinearLayoutManager(getContext()));
-        mNewPageAdapter = new HomeNewPageAdapter();
-        mNewList.setAdapter(mNewPageAdapter);
+        mCategoryContentAdapter = new NewCategoryContentAdapter();
+        mNewList.setAdapter(mCategoryContentAdapter);
         mNewList.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(@NonNull @NotNull Rect outRect, @NonNull @NotNull View view, @NonNull @NotNull RecyclerView parent, @NonNull @NotNull RecyclerView.State state) {
@@ -82,7 +82,7 @@ public class HomeNewFragment extends BaseFragment implements IHomeNewPageCallbac
 
     @Override
     public void onLoadedNewPageContent(List<NewList.RowsBean> result) {
-        mNewPageAdapter.setData(result);
+        mCategoryContentAdapter.setData(result);
         setUpState(State.SUCCESS);
     }
 
@@ -108,6 +108,7 @@ public class HomeNewFragment extends BaseFragment implements IHomeNewPageCallbac
 
     @Override
     protected void release() {
+        super.release();
         if (mHomeNewPagePresenter != null) {
             mHomeNewPagePresenter.unregisterViewCallback(this);
         }
