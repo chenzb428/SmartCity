@@ -1,5 +1,6 @@
 package com.chen.smartcity.model;
 
+import com.chen.smartcity.model.bean.DingdanResult;
 import com.chen.smartcity.model.bean.HomeBannerResult;
 import com.chen.smartcity.model.bean.LoginResult;
 import com.chen.smartcity.model.bean.MeetParams;
@@ -41,4 +42,7 @@ public interface Api {
 
     @POST("prod-api/api/common/feedback")
     Call<Result> doMeet(@Header("Authorization") String header, @Body MeetParams params);
+
+    @GET("prod-api/api/allorder/list")
+    Call<DingdanResult> getDingdanInfo(@Header("Authorization") String header);
 }

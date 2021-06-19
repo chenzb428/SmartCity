@@ -1,6 +1,7 @@
 package com.chen.smartcity.utils;
 
 import com.chen.smartcity.presenter.IAllNewsPresenter;
+import com.chen.smartcity.presenter.IDingdanPresenter;
 import com.chen.smartcity.presenter.IHomeNewPagePresenter;
 import com.chen.smartcity.presenter.IHomePresenter;
 import com.chen.smartcity.presenter.ILoginPresenter;
@@ -9,6 +10,7 @@ import com.chen.smartcity.presenter.IMinePresenter;
 import com.chen.smartcity.presenter.INewPresenter;
 import com.chen.smartcity.presenter.IServerPresenter;
 import com.chen.smartcity.presenter.impl.AllNewsPresenter;
+import com.chen.smartcity.presenter.impl.DingdanPresenter;
 import com.chen.smartcity.presenter.impl.HomeNewPagePresenter;
 import com.chen.smartcity.presenter.impl.HomePresenter;
 import com.chen.smartcity.presenter.impl.LoginPresenter;
@@ -28,6 +30,7 @@ public class PresenterManager {
     private final ILoginPresenter mLoginPresenter;
     private final IMinePresenter mMinePresenter;
     private final IMeetPresenter mMeetPresenter;
+    private final IDingdanPresenter mDingdanPresenter;
 
     public static PresenterManager getInstance() {
         return outInstance;
@@ -42,6 +45,7 @@ public class PresenterManager {
         mLoginPresenter = new LoginPresenter();
         mMinePresenter = new MineUserInfoPresenter();
         mMeetPresenter = new MeetPresenter();
+        mDingdanPresenter = new DingdanPresenter();
     }
 
     public IHomePresenter getHomePresenter() {
@@ -74,5 +78,9 @@ public class PresenterManager {
 
     public IMeetPresenter getMeetPresenter() {
         return mMeetPresenter;
+    }
+
+    public IDingdanPresenter getDingdanPresenter() {
+        return mDingdanPresenter;
     }
 }
