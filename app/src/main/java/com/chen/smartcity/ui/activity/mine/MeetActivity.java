@@ -1,5 +1,6 @@
 package com.chen.smartcity.ui.activity.mine;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,7 +55,9 @@ public class MeetActivity extends BaseActivity implements IMeetCallback {
             public void onClick(View v) {
                 String title = titleEt.getText().toString();
                 String content = contentEt.getText().toString();
-                if (mMeetPresenter != null) {
+                if (TextUtils.isEmpty(title) || TextUtils.isEmpty(content)) {
+                    ToastUtils.showToast("不能为空！");
+                } else if (mMeetPresenter != null) {
                     mMeetPresenter.doMeet(findByKey("token"), title, content);
                 }
             }
