@@ -48,22 +48,35 @@ public abstract class BaseFragment extends Fragment {
     protected void initView(View rootView) {
     }
 
+    /**
+     * 加载各种状态的view
+     * @param inflater
+     * @param container
+     */
     private void loadStateView(LayoutInflater inflater, ViewGroup container) {
+        //加载的view
         mLoadingView = loadingView(inflater, container);
         mBaseContainer.addView(mLoadingView);
 
+        //成功的view
         mSuccessView = loadSuccessView(inflater, container);
         mBaseContainer.addView(mSuccessView);
 
+        //失败的view
         mErrorView = loadErrorView(inflater, container);
         mBaseContainer.addView(mErrorView);
 
+        //内容为空的view
         mEmptyView = loadEmptyView(inflater, container);
         mBaseContainer.addView(mEmptyView);
 
         setUpState(State.NONE);
     }
 
+    /**
+     * 设置view当前的状态
+     * @param state
+     */
     protected void setUpState(State state) {
         this.mCurrentState = state;
         mSuccessView.setVisibility(mCurrentState == State.SUCCESS ? View.VISIBLE : View.GONE);
