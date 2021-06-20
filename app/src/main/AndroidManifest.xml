@@ -14,7 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCity"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.RegisterActivity"></activity>
+        <activity android:name=".ui.activity.GuideActivity" />
+        <activity android:name=".ui.activity.AppStartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.NewActivity" />
         <activity android:name=".ui.activity.mine.MeetActivity" />
         <activity android:name=".ui.activity.mine.UpdatePasswordActivity" />
@@ -23,13 +31,7 @@
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.HomeSearchActivity" />
         <activity android:name=".ui.activity.ServerSearchActivity" />
-        <activity android:name=".ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.activity.MainActivity" />
     </application>
 
 </manifest>
