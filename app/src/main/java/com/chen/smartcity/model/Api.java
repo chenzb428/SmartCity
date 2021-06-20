@@ -1,5 +1,6 @@
 package com.chen.smartcity.model;
 
+import com.chen.smartcity.model.bean.AvatarResult;
 import com.chen.smartcity.model.bean.DingdanResult;
 import com.chen.smartcity.model.bean.HomeBannerResult;
 import com.chen.smartcity.model.bean.LoginResult;
@@ -9,12 +10,16 @@ import com.chen.smartcity.model.bean.NewList;
 import com.chen.smartcity.model.bean.Result;
 import com.chen.smartcity.model.bean.ServerResult;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Url;
 
 public interface Api {
@@ -48,4 +53,8 @@ public interface Api {
 
     @PUT("prod-api/api/common/user")
     Call<Result> updateUserInfo(@Header("Authorization") String header, @Body UpdateUserInfoParams params);
+
+    @Multipart
+    @POST("common/upload")
+    Call<AvatarResult> uploadUserAvatar(@Header("Authorization") String header, @Part MultipartBody.Part file);
 }

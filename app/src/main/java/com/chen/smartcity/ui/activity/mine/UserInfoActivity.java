@@ -1,5 +1,10 @@
 package com.chen.smartcity.ui.activity.mine;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -7,9 +12,12 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
 import com.chen.smartcity.R;
 import com.chen.smartcity.base.BaseActivity;
+import com.chen.smartcity.model.bean.AvatarResult;
 import com.chen.smartcity.model.bean.Result;
 import com.chen.smartcity.model.bean.UserInfoResult;
 import com.chen.smartcity.presenter.IUpdateUserInfoPresenter;
@@ -29,6 +37,7 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoCallback,
     private Button updateBtn;
     private IUserInfoPresenter mUserInfoPresenter;
     private IUpdateUserInfoPresenter mUpdateUserInfoPresenter;
+    private String mPicPath;
 
     @Override
     protected int getLayoutResId() {
@@ -69,6 +78,14 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoCallback,
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        coverIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -126,5 +143,37 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoCallback,
     @Override
     public void onUpdateUserInfoSuccess(Result result) {
         ToastUtils.showToast(result.getMsg());
+    }
+
+    @Override
+    public void onUpdateUserAvatarSuccess(AvatarResult result) {
+        ToastUtils.showToast(result.getMsg());
+        //
+    }
+
+    @Override
+    public void onUpdateUserAvatarError(String result) {
+        ToastUtils.showToast("error! 上传失败！");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && data != null) {
+            Uri uri = data.getData();
+            String col[] = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getContentResolver().query(uri, col,
+                    null, null, null);
+            cursor.moveToFirst();
+            int colIndex = cursor.getColumnIndex(col[0]);
+            mPicPath = cursor.getString(colIndex);
+
+            if (mUpdateUserInfoPresenter != null) {
+                mUpdateUserInfoPresenter.updateUserAvatar(findByKey("token"), mPicPath);
+            }
+
+            coverIv.setImageBitmap(BitmapFactory.decodeFile(mPicPath));
+        }
     }
 }

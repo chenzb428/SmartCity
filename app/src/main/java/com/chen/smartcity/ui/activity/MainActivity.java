@@ -1,8 +1,12 @@
 package com.chen.smartcity.ui.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -45,6 +49,14 @@ public class MainActivity extends BaseActivity {
         mManager = getSupportFragmentManager();
 
         switchFragment(mHomeFragment);
+
+        setPermissions();
+    }
+
+    private void setPermissions() {
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 7);
+        }
     }
 
     @Override
