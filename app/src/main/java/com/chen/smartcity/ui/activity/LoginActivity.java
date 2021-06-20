@@ -1,5 +1,6 @@
 package com.chen.smartcity.ui.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,9 +38,9 @@ public class LoginActivity extends BaseActivity implements ILoginCallback {
             }
         });
 
-        accountEt = findViewById(R.id.login_account);
-        passwordEt = findViewById(R.id.login_password);
-        loginBtn = findViewById(R.id.login_btn);
+        accountEt = findViewById(R.id.register_account);
+        passwordEt = findViewById(R.id.register_password);
+        loginBtn = findViewById(R.id.register_btn);
         registerTv = findViewById(R.id.login_register);
     }
 
@@ -59,6 +60,13 @@ public class LoginActivity extends BaseActivity implements ILoginCallback {
                     String password = passwordEt.getText().toString().trim();
                     mLoginPresenter.doLogin(account, password);
                 }
+            }
+        });
+
+        registerTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), RegisterActivity.class));
             }
         });
     }

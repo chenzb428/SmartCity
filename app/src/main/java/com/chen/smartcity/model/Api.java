@@ -14,7 +14,6 @@ import com.chen.smartcity.model.bean.ServerResult;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -55,7 +54,7 @@ public interface Api {
     Call<DingdanResult> getDingdanInfo(@Header("Authorization") String header);
 
     @PUT("prod-api/api/common/user")
-    Call<Result> updateUserInfo(@Header("Authorization") String header, @Body UpdateUserInfoParams params);
+    Call<Result> updateUserInfo(@Header("Authorization") String header, @Body UserInfoParams params);
 
     @Multipart
     @POST("common/upload")
@@ -69,4 +68,7 @@ public interface Api {
 
     @POST("prod-api/press/pressComment")
     Call<Result> doComment(@Header("Authorization") String header, @Body NewCommentParams params);
+
+    @POST("/prod-api/api/register")
+    Call<Result> doRegister(@Body UserInfoParams params);
 }

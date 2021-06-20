@@ -1,16 +1,20 @@
 package com.chen.smartcity.model;
 
-public class UpdateUserInfoParams {
+public class UserInfoParams {
 
-    public UpdateUserInfoParams(String nickName, String email, String phonenumber, String idCard, String sex) {
+    public UserInfoParams(String userName, String nickName, String password, String email, String phonenumber, String idCard, String sex) {
+        this.userName = userName;
         this.nickName = nickName;
         this.email = email;
         this.phonenumber = phonenumber;
         this.idCard = idCard;
         this.sex = sex;
+        this.password = password;
     }
 
+    private String userName;
     private String nickName;
+    private String password;
     private String email;
     private String phonenumber;
     private String idCard;
@@ -54,5 +58,21 @@ public class UpdateUserInfoParams {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

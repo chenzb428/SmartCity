@@ -1,7 +1,7 @@
 package com.chen.smartcity.presenter.impl;
 
 import com.chen.smartcity.model.Api;
-import com.chen.smartcity.model.UpdateUserInfoParams;
+import com.chen.smartcity.model.UserInfoParams;
 import com.chen.smartcity.model.bean.AvatarResult;
 import com.chen.smartcity.model.bean.Result;
 import com.chen.smartcity.presenter.IUpdateUserInfoPresenter;
@@ -35,7 +35,7 @@ public class UpdateUserInfoPresenter implements IUpdateUserInfoPresenter {
     @Override
     public void updateUserInfo(String token, String nickname, String email, String phone, String idCard, String sex) {
 
-        UpdateUserInfoParams params = new UpdateUserInfoParams(nickname, email, phone, idCard, sex);
+        UserInfoParams params = new UserInfoParams(null, nickname, null, email, phone, idCard, sex);
         Call<Result> task = mApi.updateUserInfo(token, params);
         task.enqueue(new Callback<Result>() {
             @Override
