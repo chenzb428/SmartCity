@@ -160,4 +160,12 @@ public class UserInfoFragment extends BaseFragment implements IUserInfoCallback 
     public void onEmpty() {
 
     }
+
+    @Override
+    protected void release() {
+        super.release();
+        if (mMinePresenter != null) {
+            mMinePresenter.unregisterViewCallback(this);
+        }
+    }
 }

@@ -88,4 +88,12 @@ public class DingdanActivity extends BaseActivity implements IDingdanCallback {
     public void onEmpty() {
         emptyTv.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    protected void release() {
+        super.release();
+        if (mDingdanPresenter != null) {
+            mDingdanPresenter.unregisterViewCallback(this);
+        }
+    }
 }

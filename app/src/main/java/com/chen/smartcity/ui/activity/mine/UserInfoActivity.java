@@ -176,4 +176,15 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoCallback,
             coverIv.setImageBitmap(BitmapFactory.decodeFile(mPicPath));
         }
     }
+
+    @Override
+    protected void release() {
+        super.release();
+        if (mUserInfoPresenter != null) {
+            mUserInfoPresenter.unregisterViewCallback(this);
+        }
+        if (mUpdateUserInfoPresenter != null) {
+            mUpdateUserInfoPresenter.unregisterViewCallback(this);
+        }
+    }
 }

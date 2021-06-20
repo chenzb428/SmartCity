@@ -83,4 +83,12 @@ public class MeetActivity extends BaseActivity implements IMeetCallback {
     public void onEmpty() {
 
     }
+
+    @Override
+    protected void release() {
+        super.release();
+        if (mMeetPresenter != null) {
+            mMeetPresenter.unregisterViewCallback(this);
+        }
+    }
 }

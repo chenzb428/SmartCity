@@ -167,4 +167,12 @@ public class ServerFragment extends BaseFragment implements IServerCallback, Ser
         }
         mServerAdapter.setData(contentData);
     }
+
+    @Override
+    protected void release() {
+        super.release();
+        if (mServerPresenter != null) {
+            mServerPresenter.unregisterViewCallback(this);
+        }
+    }
 }

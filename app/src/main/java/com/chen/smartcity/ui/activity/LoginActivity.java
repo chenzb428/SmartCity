@@ -87,4 +87,12 @@ public class LoginActivity extends BaseActivity implements ILoginCallback {
     public void onEmpty() {
 
     }
+
+    @Override
+    protected void release() {
+        super.release();
+        if (mLoginPresenter != null) {
+            mLoginPresenter.unregisterViewCallback(this);
+        }
+    }
 }
