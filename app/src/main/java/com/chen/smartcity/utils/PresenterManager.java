@@ -6,6 +6,7 @@ import com.chen.smartcity.presenter.IHomeNewPagePresenter;
 import com.chen.smartcity.presenter.IHomePresenter;
 import com.chen.smartcity.presenter.ILoginPresenter;
 import com.chen.smartcity.presenter.IMeetPresenter;
+import com.chen.smartcity.presenter.INewInfoPresenter;
 import com.chen.smartcity.presenter.IUpdateUserInfoPresenter;
 import com.chen.smartcity.presenter.IUserInfoPresenter;
 import com.chen.smartcity.presenter.INewPresenter;
@@ -16,6 +17,7 @@ import com.chen.smartcity.presenter.impl.HomeNewPagePresenter;
 import com.chen.smartcity.presenter.impl.HomePresenter;
 import com.chen.smartcity.presenter.impl.LoginPresenter;
 import com.chen.smartcity.presenter.impl.MeetPresenter;
+import com.chen.smartcity.presenter.impl.NewInfoPresenter;
 import com.chen.smartcity.presenter.impl.UpdateUserInfoPresenter;
 import com.chen.smartcity.presenter.impl.UserInfoInfoPresenter;
 import com.chen.smartcity.presenter.impl.NewPresenter;
@@ -34,6 +36,7 @@ public class PresenterManager {
     private final IMeetPresenter mMeetPresenter;
     private final IDingdanPresenter mDingdanPresenter;
     private final IUpdateUserInfoPresenter mUpdateUserInfoPresenter;
+    private final INewInfoPresenter mNewInfoPresenter;
 
     public static PresenterManager getInstance() {
         return outInstance;
@@ -50,6 +53,7 @@ public class PresenterManager {
         mMeetPresenter = new MeetPresenter();
         mDingdanPresenter = new DingdanPresenter();
         mUpdateUserInfoPresenter = new UpdateUserInfoPresenter();
+        mNewInfoPresenter = new NewInfoPresenter();
     }
 
     public IHomePresenter getHomePresenter() {
@@ -90,5 +94,9 @@ public class PresenterManager {
 
     public IUpdateUserInfoPresenter getUpdateUserInfoPresenter() {
         return mUpdateUserInfoPresenter;
+    }
+
+    public INewInfoPresenter getNewInfoPresenter() {
+        return mNewInfoPresenter;
     }
 }

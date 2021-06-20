@@ -1,5 +1,6 @@
 package com.chen.smartcity.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.chen.smartcity.model.bean.NewCategory;
 import com.chen.smartcity.model.bean.NewList;
 import com.chen.smartcity.presenter.IAllNewsPresenter;
 import com.chen.smartcity.presenter.INewPresenter;
+import com.chen.smartcity.ui.activity.NewActivity;
 import com.chen.smartcity.ui.adapter.NewListAdapter;
 import com.chen.smartcity.utils.Constants;
 import com.chen.smartcity.utils.PresenterManager;
@@ -31,6 +33,7 @@ import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
+import com.youth.banner.listener.OnBannerListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -105,6 +108,14 @@ public class NewFragment extends BaseFragment implements IAllNewsCallback, INewC
                     @Override
                     public int getRealCount() {
                         return 5;
+                    }
+                })
+                .setOnBannerListener(new OnBannerListener() {
+                    @Override
+                    public void OnBannerClick(Object o, int i) {
+                        Intent intent = new Intent(getContext(), NewActivity.class);
+                        intent.putExtra("newId", result.get(i).getId());
+                        getContext().startActivity(intent);
                     }
                 });
         List<NewList.RowsBean> newList = result;

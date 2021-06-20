@@ -4,6 +4,8 @@ import com.chen.smartcity.model.bean.AvatarResult;
 import com.chen.smartcity.model.bean.DingdanResult;
 import com.chen.smartcity.model.bean.HomeBannerResult;
 import com.chen.smartcity.model.bean.LoginResult;
+import com.chen.smartcity.model.bean.NewCommentsResult;
+import com.chen.smartcity.model.bean.NewResult;
 import com.chen.smartcity.model.bean.UserInfoResult;
 import com.chen.smartcity.model.bean.NewCategory;
 import com.chen.smartcity.model.bean.NewList;
@@ -20,6 +22,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface Api {
@@ -57,4 +60,13 @@ public interface Api {
     @Multipart
     @POST("common/upload")
     Call<AvatarResult> uploadUserAvatar(@Header("Authorization") String header, @Part MultipartBody.Part file);
+
+    @GET
+    Call<NewResult> getNewInfo(@Url String url); //prod-api/press/press/{id}
+
+    @GET("prod-api/press/comments/list")
+    Call<NewCommentsResult> getNewComments(@Query("newsId") int id);
+
+    @POST("prod-api/press/pressComment")
+    Call<Result> doComment(@Header("Authorization") String header, @Body NewCommentParams params);
 }

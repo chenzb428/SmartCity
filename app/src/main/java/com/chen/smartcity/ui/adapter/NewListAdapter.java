@@ -1,5 +1,6 @@
 package com.chen.smartcity.ui.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.chen.smartcity.R;
 import com.chen.smartcity.model.bean.NewList;
+import com.chen.smartcity.ui.activity.NewActivity;
 import com.chen.smartcity.utils.Constants;
 
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +37,14 @@ public class NewListAdapter extends RecyclerView.Adapter<NewListAdapter.InnerHol
     public void onBindViewHolder(@NonNull @NotNull NewListAdapter.InnerHolder holder, int position) {
         NewList.RowsBean item = mData.get(position);
         holder.setData(item);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), NewActivity.class);
+                intent.putExtra("newId", item.getId());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

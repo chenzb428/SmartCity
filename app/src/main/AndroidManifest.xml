@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCity"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.mine.MeetActivity"></activity>
+        <activity android:name=".ui.activity.NewActivity"></activity>
+        <activity android:name=".ui.activity.mine.MeetActivity" />
         <activity android:name=".ui.activity.mine.UpdatePasswordActivity" />
         <activity android:name=".ui.activity.mine.DingdanActivity" />
         <activity android:name=".ui.activity.mine.UserInfoActivity" />
