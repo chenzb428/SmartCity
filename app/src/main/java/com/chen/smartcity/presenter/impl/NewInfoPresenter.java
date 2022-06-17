@@ -73,7 +73,7 @@ public class NewInfoPresenter implements INewInfoPresenter {
                     NewCommentsResult result = response.body();
                     LogUtils.d(NewInfoPresenter.this, "getNewComments result === > " + result.toString());
                     if (mViewCallback != null) {
-                        if (result == null || result.getRows().size() == 0) {
+                        if (result == null || result.getRows() == null || result.getRows().size() == 0) {
                             mViewCallback.onLoadedNewCommentsEmpty();
                         } else {
                             mViewCallback.onLoadedNewComments(result.getRows());
