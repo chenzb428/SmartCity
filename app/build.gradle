@@ -1,27 +1,45 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.chen.smartcity"
-        minSdkVersion 22
+        applicationId "com.chen.smartcitydemo"
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a" // 预定编译库的CPU架构 【注意：可以只指定 就编译"arm64-v8a","armeabi-v7a"进apk】
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('\\..\\ChenKey.jks')
+            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
+        }
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -29,21 +47,18 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'org.jetbrains:annotations:15.0'
-    implementation 'org.jetbrains:annotations:15.0'
-    implementation 'org.jetbrains:annotations:15.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
-    implementation files('libs\\banner-2.1.0.aar')
-    implementation files('libs\\glide-4.10.0.aar')
-    implementation files('libs\\gifdecoder-4.10.0.aar')
-    implementation files('libs\\disklrucache-4.10.0.jar')
+    implementation files('libs/okhttp-3.12.0.jar')
+    implementation files('libs/retrofit-2.6.3.jar')
+    implementation files('libs/gson-2.8.0.jar')
+    implementation files('libs/gifdecoder-4.10.0.aar')
+    implementation files('libs/disklrucache-4.10.0.jar')
+    implementation files('libs/glide-4.10.0.aar')
+    implementation files('libs/banner-2.1.0.aar')
 }

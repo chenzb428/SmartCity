@@ -1,84 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <LinearLayout
+    android:layout_height="match_parent">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="200dp"
+        android:gravity="center">
+
         <ImageView
-            android:id="@+id/mine_cover"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:id="@+id/mine_user_cover_iv"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_launcher_round" />
+
         <TextView
-            android:id="@+id/mine_username"
+            android:id="@+id/mine_user_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="用户未登录"
-            android:layout_gravity="center"/>
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/mine_user_cover_iv"
+            android:layout_marginTop="15dp"
+            android:text="未登录"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/mine_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="登录"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_light"
+        android:visibility="visible" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mine_settings_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:visibility="gone"
+        app:cardElevation="0dp">
 
         <LinearLayout
-            android:id="@+id/mine_setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-            <TextView
-                android:id="@+id/mine_user_info"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2" />
+
+            <RelativeLayout
+                android:id="@+id/mine_user_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:text="个人信息"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2" />
+
+            <RelativeLayout
+                android:id="@+id/mine_order_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:text="订单列表"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2" />
+
+            <RelativeLayout
+                android:id="@+id/mine_update_password_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:text="修改密码"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2" />
+
+            <RelativeLayout
+                android:id="@+id/mine_meet_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:text="意见反馈"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2" />
+
+            <Button
+                android:id="@+id/mine_login_out_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
-                android:text="个人信息"
-                android:gravity="center"
-                android:background="@color/white" />
-            <TextView
-                android:id="@+id/mine_user_diangdan"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:text="订单列表"
-                android:gravity="center"
-                android:background="@color/white" />
-            <TextView
-                android:id="@+id/mine_user_password"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:text="修改密码"
-                android:gravity="center"
-                android:background="@color/white" />
-            <TextView
-                android:id="@+id/mine_user_meet"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:text="意见反馈"
-                android:gravity="center"
-                android:background="@color/white" />
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="退出登录"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_red_light"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/mine_logout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentBottom="true"
-        android:text="退出登录"
-        android:gravity="center"
-        android:background="@color/white"
-        android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/mine_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="登录" />
-</RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

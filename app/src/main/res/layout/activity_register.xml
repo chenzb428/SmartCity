@@ -4,69 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.RegisterActivity">
-    <include
-        android:id="@+id/include"
-        layout="@layout/top_toolbar" />
+    tools:context=".ui.activity.LoginActivity">
 
-    <EditText
-        android:id="@+id/register_account"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginRight="20dp"
-        android:hint="用户名"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="标题"
+        app:titleTextColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/cover_iv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="60dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
-        android:id="@+id/register_password"
+        android:id="@+id/account_et"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="25dp"
+        android:hint="账号"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cover_iv" />
+
+    <EditText
+        android:id="@+id/password_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="25dp"
         android:hint="密码"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_account" />
+        app:layout_constraintTop_toBottomOf="@+id/account_et" />
 
     <EditText
-        android:id="@+id/register_email"
+        android:id="@+id/phone_num_et"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:hint="手机号"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:hint="邮箱"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+        android:layout_marginEnd="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/password_et" />
 
-    <EditText
-        android:id="@+id/register_phone"
+    <RadioGroup
+        android:id="@+id/sex_layout_rg"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:hint="手机号码"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_email" />
+        android:layout_marginEnd="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone_num_et">
+
+        <RadioButton
+            android:id="@+id/sex_man_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:checked="true"
+            android:text="男" />
+
+        <RadioButton
+            android:id="@+id/sex_woman_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="女" />
+    </RadioGroup>
 
     <Button
         android:id="@+id/register_btn"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="25dp"
+        android:background="@android:color/holo_blue_light"
         android:text="注册"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/sex_layout_rg" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
